@@ -1,0 +1,12 @@
+{
+	"editor.formatOnSave": true,
+	"eslint.autoFixOnSave": true,
+	"eslint.alwaysShowStatus": true,
+	"eslint.options": {
+		"extensions": [".ts"]
+	},
+	"eslint.validate": [
+		{ "language": "typescript", "autoFix": true },
+	],
+	"typescript.tsdk": "node_modules/typescript/lib",
+}
