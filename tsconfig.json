@@ -1,6 +1,5 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
 		"allowSyntheticDefaultImports": true,
 		"declaration": true,
 		"module": "ESNext",
@@ -9,8 +8,10 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"strict": true,
-		"target": "ESNext"
+		"target": "ES5",
+		"outDir": "./dist",
+		"rootDir": "./src"
 	},
 	"exclude": ["node_modules"],
-	"include": ["src/**/*.ts"]
+	"include": ["**/*.ts"]
 }
