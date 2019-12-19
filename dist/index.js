@@ -13,19 +13,29 @@ var __assign =
 			}
 		return __assign.apply(this, arguments)
 	}
-var assignValue = function(_a, payload) {
+var assignValue = function(_a) {
 	var value = _a.value,
-		key = _a.key
-	if (typeof value !== 'undefined') {
+		key = _a.key,
+		payload = _a.payload,
+		empty = _a.empty,
+		name = _a.name
+	if (empty) {
+		return undefined
+	} else if (typeof value !== 'undefined') {
 		return value
 	} else if (key && payload[key] !== 'undefined') {
 		return payload[key]
 	} else if (payload !== 'undefined') {
 		return payload
+	} else {
+		throw new Error(
+			'empty is false while both value and payload are undefined for option ' +
+				name +
+				', please specify empty: true to pass an undefined value',
+		)
 	}
-	return undefined
 }
-export var vuexActionFactory = function(actions) {
+export var actionFactory = function(actions) {
 	var output = {}
 	actions.forEach(function(_a) {
 		var name = _a.name,
@@ -37,7 +47,9 @@ export var vuexActionFactory = function(actions) {
 					commit = _a.commit,
 					execute = _a.execute,
 					key = _a.key,
-					value = _a.value
+					value = _a.value,
+					_b = _a.empty,
+					empty = _b === void 0 ? false : _b
 				if (execute) {
 					if (typeof execute !== 'function') {
 						throw new Error(execute + ' is not a function')
@@ -46,18 +58,20 @@ export var vuexActionFactory = function(actions) {
 				} else {
 					var action = dispatch ? context.dispatch : context.commit
 					var actionTarget = dispatch || commit
-					var actionPayload = assignValue({ value: value, key: key }, payload)
-					if (
-						!action ||
-						!actionTarget ||
-						typeof actionPayload === 'undefined'
-					) {
+					var actionPayload = assignValue({
+						value: value,
+						key: key,
+						payload: payload,
+						empty: empty,
+						name: name,
+					})
+					if (!action || !actionTarget) {
 						throw new Error(
 							'action ' + name + ' called with missing parameters',
 						)
 					} else {
 						action(actionTarget, actionPayload, {
-							root: Boolean(actionTarget && actionTarget.match(/\//)),
+							root: Boolean(actionTarget && /\//.exec(actionTarget)),
 						})
 					}
 				}
@@ -66,7 +80,7 @@ export var vuexActionFactory = function(actions) {
 	})
 	return output
 }
-export var vuexMutationFactory = function(mutations) {
+export var mutationFactory = function(mutations) {
 	var output = {}
 	mutations.forEach(function(_a) {
 		var name = _a.name,
@@ -78,18 +92,24 @@ export var vuexMutationFactory = function(mutations) {
 					set = _b.set,
 					execute = _b.execute,
 					key = _b.key,
-					value = _b.value
-				var mutationPayload = assignValue({ value: value, key: key }, payload)
-				if (typeof set === 'string') {
-					state = __assign(
-						__assign({}, state),
-						((_a = {}),
-						(_a[set] = execute ? execute(mutationPayload) : mutationPayload),
-						_a),
-					)
-				} else {
-					set(state, mutationPayload)
-				}
+					value = _b.value,
+					_c = _b.empty,
+					empty = _c === void 0 ? false : _c
+				var mutationPayload = assignValue({
+					value: value,
+					key: key,
+					payload: payload,
+					empty: empty,
+					name: name,
+				})
+				state = __assign(
+					__assign({}, state),
+					((_a = {}),
+					(_a[set] = execute
+						? execute(state, mutationPayload)
+						: mutationPayload),
+					_a),
+				)
 			}
 		}
 	})
