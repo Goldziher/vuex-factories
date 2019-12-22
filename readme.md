@@ -16,7 +16,7 @@ yarn add vuex-factories
 
 ## Usage
 
-Both factory functions expect an array of objects as their parameter. The strucre of the objects is as follows:
+Both factory functions expect an array of objects as their parameter. The structure of the objects is as follows:
 
 ### action factory
 
