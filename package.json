@@ -1,36 +1,53 @@
 {
-	"name": "vuex-factories",
+	"name": "vuex-hooks",
 	"version": "1.0.0",
-	"description": "typescript based factories to simplify vuex module creation and upkeep",
-	"main": "./dist/index.js",
+	"description": "Typescript enabled vuex factories",
 	"files": [
-		"./dist/*.*"
+		"dist"
 	],
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"compile": "rm -rf ./dist/ && npx tsc && prettier --write ./dist/*.*"
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"browser": {
+		"./dist/cjs/index.js": "./dist/umd/index.js",
+		"./dist/esm/index.js": "./dist/esm/index.js"
 	},
-	"author": "Na'aman Hirschfeld",
-	"license": "MIT",
+	"unpkg": "dist/umd/index.min.js",
+	"scripts": {
+		"prepublishOnly": "yarn build",
+		"build": "rimraf dist && rollup -c rollup.config.js",
+		"postpublish": "rimraf dist",
+		"coveralls": "jest --coverage --silent && cat ./coverage/lcov.info | coveralls",
+		"test": "jest --silent"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Goldziher/vuex-hooks.git"
+	},
 	"keywords": [
 		"vuex",
-		"factory",
 		"factories",
 		"typescript"
 	],
+	"author": "Na'aman Hirschfeld",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Goldziher/vuex-factories/issues"
+	},
+	"homepage": "https://github.com/Goldziher/vuex-factories#readme",
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^2.31.0",
 		"@typescript-eslint/parser": "^2.31.0",
 		"eslint": "^7.0.0",
 		"eslint-config-prettier": "^6.11.0",
 		"prettier": "^2.0.5",
-		"typescript": "^3.8.3"
+		"rimraf": "^3.0.2",
+		"rollup": "^2.8.2",
+		"rollup-plugin-terser": "^5.3.0",
+		"rollup-plugin-typescript2": "^0.27.0",
+		"typescript": "^3.8.3",
+		"vuex": "^3.3.0"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/Goldziher/vuex-factories"
-	},
-	"dependencies": {
+	"peerDependencies": {
 		"vuex": "^3.3.0"
 	}
 }

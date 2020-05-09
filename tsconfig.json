@@ -1,17 +1,12 @@
 {
 	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"declaration": true,
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"noImplicitAny": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"strict": true,
 		"target": "ES5",
-		"outDir": "./dist",
-		"rootDir": "./src"
+		"module": "ES2015",
+		"declaration": true,
+		"strict": true,
+		"moduleResolution": "node",
+		"esModuleInterop": true
 	},
-	"exclude": ["node_modules"],
-	"include": ["**/src/*.ts"]
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
 }
