@@ -1,5 +1,5 @@
 {
-	"name": "vuex-hooks",
+	"name": "vuex-factories",
 	"version": "2.0.0",
 	"description": "Typescript enabled vuex factories",
 	"files": [
@@ -21,8 +21,12 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Goldziher/vuex-hooks.git"
+		"url": "git+https://github.com/Goldziher/vuex-factories.git"
 	},
+	"bugs": {
+		"url": "https://github.com/Goldziher/vuex-factories/issues"
+	},
+	"homepage": "https://github.com/Goldziher/vuex-factories#readme",
 	"keywords": [
 		"vuex",
 		"factories",
@@ -30,10 +34,6 @@
 	],
 	"author": "Na'aman Hirschfeld",
 	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Goldziher/vuex-factories/issues"
-	},
-	"homepage": "https://github.com/Goldziher/vuex-factories#readme",
 	"devDependencies": {
 		"@types/jest": "^25.2.1",
 		"@typescript-eslint/eslint-plugin": "^2.31.0",
