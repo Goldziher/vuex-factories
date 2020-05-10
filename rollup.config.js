@@ -11,10 +11,11 @@ const output = (type) => ({
 		sourcemap: true,
 		globals: {
 			vuex: 'vuex',
+			vue: 'Vue',
 		},
 	},
 })
-const external = ['vuex']
+const external = ['vue', 'vuex']
 const plugins = [
 	typescript({
 		useTsconfigDeclarationDir: false,

@@ -3,17 +3,15 @@ export interface Dictionary<T = any> {
 }
 
 interface BaseOption {
-	execute?: Function
-	key?: string
 	value?: any
-	empty?: boolean
 }
 
 export interface ActionOption extends BaseOption {
+	execute?: Function
 	dispatch?: string
 	commit?: string
 }
 
 export interface MutationOption extends BaseOption {
-	set: string
+	key: string
 }
