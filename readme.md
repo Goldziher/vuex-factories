@@ -1,6 +1,6 @@
 # Vuex Factories
 
-[![Build Status](https://travis-ci.org/Goldziher/vuex-factories.svg?branch=master)](https://travis-ci.org/Goldziher/vuex-factories)
+[![Build Status](https://travis-ci.org/Goldziher/vuex-factories.svg?branch=master)](https://travis-ci.org/Goldziher/vuex-factories) [![Coverage Status](https://coveralls.io/repos/github/Goldziher/vuex-factories/badge.svg?branch=master)](https://coveralls.io/github/Goldziher/vuex-factories?branch=master)
 
 This tiny package offers two factory functions - a vuex action factory and a vuex mutation factory, which help remove some of the redundancies tied to writing vuex modules.
 
