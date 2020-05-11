@@ -1,6 +1,6 @@
 # Vuex Factories
 
-[![Build Status](https://travis-ci.org/Goldziher/vuex-factories.svg?branch=master)](https://travis-ci.org/Goldziher/vuex-factories) [![Coverage Status](https://coveralls.io/repos/github/Goldziher/vuex-factories/badge.svg?branch=master)](https://coveralls.io/github/Goldziher/vuex-factories?branch=master)
+[![npm version](https://badge.fury.io/js/vuex-factories.svg)](https://badge.fury.io/js/vuex-factories) [![Build Status](https://travis-ci.org/Goldziher/vuex-factories.svg?branch=master)](https://travis-ci.org/Goldziher/vuex-factories) [![Coverage Status](https://coveralls.io/repos/github/Goldziher/vuex-factories/badge.svg?branch=master)](https://coveralls.io/github/Goldziher/vuex-factories?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/bd2f46045503d6e836aa/maintainability)](https://codeclimate.com/github/Goldziher/vuex-factories/maintainability)
 
 This package offers an action factory and a mutation factory meant to reduce some of the boilerplate of writing vuex modules.
 
