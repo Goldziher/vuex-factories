@@ -9,7 +9,7 @@ export function actionFactory<S = any, R = any>(
 	return reduceToDict(
 		Object.entries(actions).map(([name, options]) => [
 			name,
-			(context: ActionContext<any, any>, payload?: any): void => {
+			(context: ActionContext<S, R>, payload?: any): void => {
 				if (!options.length)
 					throw new Error(
 						`[vuex-factories] options array is empty for action ${name}`,
@@ -21,9 +21,9 @@ export function actionFactory<S = any, R = any>(
 						const actionPayload =
 							typeof value === 'function'
 								? value(payload)
-								: typeof payload !== 'undefined'
-								? payload
-								: value
+								: typeof value !== 'undefined'
+								? value
+								: payload
 						if (typeof dispatch === 'string' && dispatch.trim()) {
 							context.dispatch(dispatch, actionPayload, {
 								root: Boolean(/\//.exec(dispatch)),
@@ -44,7 +44,7 @@ export function actionFactory<S = any, R = any>(
 	)
 }
 
-export function mutationFactory<S>(mutations: {
+export function mutationFactory<S = any>(mutations: {
 	[k: string]: { key: S extends object ? keyof S : string; value?: any }[]
 }): Dictionary<Mutation<S>> {
 	return reduceToDict(
@@ -67,12 +67,12 @@ export function mutationFactory<S>(mutations: {
 						key,
 						typeof value === 'function'
 							? value(payload)
-							: typeof payload !== 'undefined'
-							? payload
-							: value,
+							: typeof value !== 'undefined'
+							? value
+							: payload,
 					)
 				})
 			},
 		]),
-	) as Dictionary<Mutation<S>>
+	)
 }
