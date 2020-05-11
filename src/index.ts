@@ -1,5 +1,5 @@
-import { Dictionary, MutationOption, ActionOption } from './types'
-import { Mutation, ActionContext, ActionHandler } from 'vuex'
+import { ActionContext, ActionHandler, Mutation } from 'vuex'
+import { ActionOption, Dictionary } from './types'
 import { reduceToDict } from './util'
 import Vue from 'vue'
 
@@ -44,13 +44,13 @@ export function actionFactory<S = any, R = any>(
 	)
 }
 
-export function mutationFactory<S extends object>(
-	mutations: Dictionary<MutationOption[]>,
-): Dictionary<Mutation<S>> {
+export function mutationFactory<S>(mutations: {
+	[k: string]: { key: S extends object ? keyof S : string; value?: any }[]
+}): Dictionary<Mutation<S>> {
 	return reduceToDict(
 		Object.entries(mutations).map(([name, options]) => [
 			name,
-			(state: S, payload?: any): void => {
+			(state: S extends object ? S : object, payload?: any): void => {
 				if (!options.length)
 					throw new Error(
 						`[vuex-factories] options array is empty for mutation ${name}`,
@@ -74,5 +74,5 @@ export function mutationFactory<S extends object>(
 				})
 			},
 		]),
-	)
+	) as Dictionary<Mutation<S>>
 }
