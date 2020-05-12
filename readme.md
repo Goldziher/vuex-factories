@@ -1,6 +1,6 @@
 # Vuex Factories
 
-[![npm version](https://badge.fury.io/js/vuex-factories.svg)](https://badge.fury.io/js/vuex-factories) [![Build Status](https://travis-ci.org/Goldziher/vuex-factories.svg?branch=master)](https://travis-ci.org/Goldziher/vuex-factories) [![Coverage Status](https://coveralls.io/repos/github/Goldziher/vuex-factories/badge.svg?branch=master)](https://coveralls.io/github/Goldziher/vuex-factories?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/bd2f46045503d6e836aa/maintainability)](https://codeclimate.com/github/Goldziher/vuex-factories/maintainability)
+[![npm version](https://badge.fury.io/js/vuex-factories.svg)](https://badge.fury.io/js/vuex-factories) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/Goldziher/vuex-factories.svg?branch=master)](https://travis-ci.org/Goldziher/vuex-factories) [![Coverage Status](https://coveralls.io/repos/github/Goldziher/vuex-factories/badge.svg?branch=master)](https://coveralls.io/github/Goldziher/vuex-factories?branch=master) [![Maintainability](https://api.codeclimate.com/v1/badges/bd2f46045503d6e836aa/maintainability)](https://codeclimate.com/github/Goldziher/vuex-factories/maintainability)
 
 This package offers an action factory and a mutation factory meant to reduce some of the boilerplate of writing vuex modules.
 
@@ -36,7 +36,7 @@ Commit and dispatch are strings of the type used by vuex, i.e. for a mutation it
 
 Value in turn can take two different forms:
 
-1. value can be a function. In this case, the commit or dispatch in the given option will be passed `value(payload)` as the payload.
+1. value can be a function. In this case, the commit or dispatch in the given option will be passed `value(context, payload)` as the payload.
 2. value can be any other kind of value. _note: if specified value for a given option will take precedence over a payload, even if payload is passed to the action_
 
 | Option   | Use                               | Example                                                        |
@@ -143,7 +143,7 @@ mutationFactory({
 
 ```
 
-Each mutation option **must include** a key prop, which represents a state key, e.g. "users". It can also include a value prop. The value prop here acts exactly like it does for actionFactory, that is - it can be either a function, in which case it will be called with the payload as its parameter, or it can be a default value.
+Each mutation option **must include** a key prop, which represents a state key, e.g. "users". It can also include a value prop. The value prop here acts exactly like it does for actionFactory, that is - it can be either a function, in which case it will be called with the state and payload as arguments: `value(state, payload)`, or it can be a default value of another type.
 
 The use case for the mutation factory follows similar logic - reducing unnecessary boilerplate. For example:
 

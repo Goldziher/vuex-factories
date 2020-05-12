@@ -33,7 +33,7 @@
 		"typescript"
 	],
 	"author": "Na'aman Hirschfeld",
-	"license": "ISC",
+	"license": "MIT",
 	"devDependencies": {
 		"@types/jest": "^25.2.1",
 		"@typescript-eslint/eslint-plugin": "^2.31.0",

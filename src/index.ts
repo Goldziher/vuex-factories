@@ -20,7 +20,7 @@ export function actionFactory<S = any, R = any>(
 					} else {
 						const actionPayload =
 							typeof value === 'function'
-								? value(payload)
+								? value(context, payload)
 								: typeof value !== 'undefined'
 								? value
 								: payload
@@ -66,7 +66,7 @@ export function mutationFactory<S = any>(mutations: {
 						state,
 						key,
 						typeof value === 'function'
-							? value(payload)
+							? value(state, payload)
 							: typeof value !== 'undefined'
 							? value
 							: payload,

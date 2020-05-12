@@ -56,7 +56,7 @@ describe('actionFactory tests', () => {
 		expect(mockAction).toBeCalled()
 	})
 	it('dispatches action with function value', () => {
-		const value = jest.fn((arr: number[]) => arr.reverse())
+		const value = jest.fn((_, arr: number[]) => arr.reverse())
 		const payload = [1, 2, 3]
 		store = createStore(
 			actionFactory({
@@ -64,7 +64,7 @@ describe('actionFactory tests', () => {
 			}),
 		)
 		store.dispatch('test/test', payload)
-		expect(value).toBeCalledWith(payload)
+		expect(value).toBeCalledWith(expect.any(Object), payload)
 		expect(value).toReturnWith(payload.reverse())
 		expect(mockAction).toBeCalledWith<[ActionContext<any, any>, number[]]>(
 			expect.any(Object),
@@ -96,7 +96,7 @@ describe('actionFactory tests', () => {
 		)
 	})
 	it('commits mutation with function value', () => {
-		const value = jest.fn((arr: number[]) => arr.reverse())
+		const value = jest.fn((_, arr: number[]) => arr.reverse())
 		const payload = [1, 2, 3]
 		store = createStore(
 			actionFactory({
@@ -104,7 +104,7 @@ describe('actionFactory tests', () => {
 			}),
 		)
 		store.dispatch('test/test', payload)
-		expect(value).toBeCalledWith(payload)
+		expect(value).toBeCalledWith(expect.any(Object), payload)
 		expect(value).toReturnWith(payload.reverse())
 		expect(MOCK_MUTATION).toBeCalledWith<[any, number[]]>(
 			expect.any(Object),
@@ -183,7 +183,7 @@ describe('mutationFactory tests', () => {
 		expect(() => store.commit('test/TEST')).toThrow()
 	})
 	it('sets state key with value(payload) when value is a function', () => {
-		const value = jest.fn((arr: number[]) => arr.reverse())
+		const value = jest.fn((_, arr: number[]) => arr.reverse())
 		const payload = [1, 2, 3]
 		let store = createStore(
 			mutationFactory({
@@ -191,7 +191,7 @@ describe('mutationFactory tests', () => {
 			}),
 		)
 		store.commit('test/TEST', payload)
-		expect(value).toBeCalledWith(payload)
+		expect(value).toBeCalledWith(expect.any(Object), payload)
 		// @ts-ignore
 		expect(store.state.test.test).toEqual(payload.reverse())
 	})
