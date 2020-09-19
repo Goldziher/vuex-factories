@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Dictionary } from './types'
 
 export const reduceToDict = (inputArr: [string, any][]): Dictionary =>
